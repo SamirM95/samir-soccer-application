@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <title>Home</title>
+    <script>
+        $(document).ready(function () {
+            $('#soccer_table').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container text-center" style="margin-top: 50px; margin-bottom: 50px;">
+        <h4>Soccer Scores</h4>
+    </div>
+    <div class="container">
+        <table id="soccer_table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Home</th>
+                    <th scope="col">Away</th>
+                    <th scope="col">Score Home Team</th>
+                    <th scope="col">Score Away Team</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for score in scores %}
+                <tr>
+                    <th scope="row">{{score.date.strftime('%Y-%m-%d')}}</th>
+                    <td>{{score.home}}</td>
+                    <td>{{score.away}}</td>
+                    <td>{{score.score_home_team}}</td>
+                    <td>{{score.score_away_team}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>

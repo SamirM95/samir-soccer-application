@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <div class="container mt-3">
+        <button onclick="location.href='/add_score';" class="btn btn-success" style="float: left;">
+            Add new score
+        </button>
+        <button onclick="location.href='/logout';" class="btn btn-danger" style="float: right;">
+            Logout
+        </button>
+    </div>
+    <br>
+    <div class="container text-center mt-5">
+        <h4>Manage Scores</h4>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Home</th>
+                    <th scope="col">Away</th>
+                    <th scope="col">Score Home Team</th>
+                    <th scope="col">Score Away Team</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <th scope="row">{{score.date.strftime('%Y-%m-%d')}}</th>
+                    <td>{{score.home}}</td>
+                    <td>{{score.away}}</td>
+                    <td>{{score.score_home_team}}</td>
+                    <td>{{score.score_away_team}}</td>
+                    <td><button onclick="location.href='/edit_score/{{score.id}}';" class="btn btn-primary">Edit</button></td>
+                    <td><button onclick="location.href='/delete_score/{{score.id}}';" class="btn btn-danger">Delete</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
